@@ -10,16 +10,16 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ivory:   #faf6f0;
-    --cream:   #f4ede0;
-    --blush:   #e8c4b0;
-    --rose:    #c8886a;
-    --gold:    #b89660;
-    --gold2:   #d4af7a;
-    --brown:   #5c3d2e;
-    --dark:    #2e1f15;
-    --text:    #4a3526;
-    --muted:   #8a6e5c;
+    --ivory:   #faf8f6;
+    --cream:   #fde8f0;
+    --blush:   #f0c4d1;
+    --rose:    #d97c8c;
+    --gold:    #c8779a;
+    --gold2:   #e89ba7;
+    --brown:   #6b3a7a;
+    --dark:    #5a1a3a;
+    --text:    #4a2535;
+    --muted:   #9a7a8a;
     --white:   #fff;
   }
 
@@ -32,150 +32,149 @@
     overflow-x: hidden;
   }
 
-  /* ─── ENVELOPE OVERLAY ─── */
+  /* ─── BRIDE INVITATION CARD ─── */
   #envelope-screen {
     position: fixed; inset: 0; z-index: 9999;
-    background: linear-gradient(145deg, #2e1f15 0%, #4a3526 50%, #2e1f15 100%);
+    background: linear-gradient(135deg, #4a1a4a 0%, #6b3a7a 50%, #4a1a4a 100%);
     display: flex; align-items: center; justify-content: center;
     transition: opacity 0.8s ease, visibility 0.8s ease;
   }
   #envelope-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
 
-  .env-wrap { position: relative; cursor: pointer; }
+  #envelope-screen > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .env-wrap { position: relative; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
   /* Floating petals */
-  .petal { position: absolute; font-size: 1.4rem; animation: petalFloat 6s ease-in-out infinite; opacity: 0.5; }
-  .petal:nth-child(1) { top: -80px; left: -60px; animation-delay: 0s; }
-  .petal:nth-child(2) { top: -40px; right: -80px; animation-delay: 1.5s; }
-  .petal:nth-child(3) { bottom: -60px; left: -80px; animation-delay: 3s; }
-  .petal:nth-child(4) { bottom: -30px; right: -50px; animation-delay: 4.5s; }
-  @keyframes petalFloat { 0%,100%{ transform: translateY(0) rotate(0deg); } 50%{ transform: translateY(-18px) rotate(15deg); } }
+  .petal { position: absolute; font-size: 1.4rem; animation: petalFloat 6s ease-in-out infinite; opacity: 0.6; }
+  .petal:nth-child(1) { top: -100px; left: 20%; animation-delay: 0s; }
+  .petal:nth-child(2) { top: -60px; right: 15%; animation-delay: 1.5s; }
+  .petal:nth-child(3) { bottom: -80px; left: 10%; animation-delay: 3s; }
+  .petal:nth-child(4) { bottom: -40px; right: 20%; animation-delay: 4.5s; }
+  @keyframes petalFloat { 0%,100%{ transform: translateY(0) rotate(0deg); } 50%{ transform: translateY(-20px) rotate(20deg); } }
 
   .envelope {
-    width: 340px; height: 220px;
+    width: 100%;
+    height: 100%;
     position: relative;
-    transform-style: preserve-3d;
-    animation: envBob 3s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  @keyframes envBob { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
 
   .env-body {
-    width: 100%; height: 100%;
-    background: linear-gradient(160deg, #f4ede0 0%, #e8d8c4 100%);
-    border-radius: 4px;
-    position: absolute;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(180,140,90,0.3);
+    width: 380px;
+    background: linear-gradient(135deg, #fde8f0 0%, #f8d4e0 100%);
+    border-radius: 12px;
+    padding: 60px 50px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    text-align: center;
+    position: relative;
     overflow: hidden;
+    transition: all 0.6s ease;
+    opacity: 1;
   }
   .env-body::before {
     content: '';
     position: absolute; inset: 0;
-    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(180,140,90,0.04) 10px, rgba(180,140,90,0.04) 20px);
-  }
-  /* Bottom flap triangle */
-  .env-bottom {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 0;
-    border-left: 170px solid transparent;
-    border-right: 170px solid transparent;
-    border-bottom: 120px solid rgba(200,160,100,0.25);
-  }
-  /* Side flaps */
-  .env-left {
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 0;
-    border-top: 110px solid transparent;
-    border-bottom: 110px solid transparent;
-    border-left: 140px solid rgba(190,150,90,0.18);
-  }
-  .env-right {
-    position: absolute; right: 0; top: 0; bottom: 0;
-    width: 0;
-    border-top: 110px solid transparent;
-    border-bottom: 110px solid transparent;
-    border-right: 140px solid rgba(190,150,90,0.18);
+    background: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(200,100,130,0.03) 8px, rgba(200,100,130,0.03) 16px);
+    pointer-events: none;
   }
 
-  /* Top flap — the one that opens */
-  .env-flap {
-    position: absolute; top: 0; left: 0; right: 0;
-    width: 0; height: 0;
-    border-left: 170px solid transparent;
-    border-right: 170px solid transparent;
-    border-top: 130px solid #d4af7a;
-    transform-origin: top center;
-    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-  }
-  .env-flap::after {
-    content: '';
-    position: absolute;
-    top: -130px; left: -170px; right: -170px;
-    height: 130px;
-    background: linear-gradient(160deg, #c8a055 0%, #e0c07a 50%, #c8a055 100%);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-  }
-  /* Wax seal */
+  /* Hide unused elements */
+  .env-left, .env-right, .env-flap, .env-bottom { display: none; }
+
   .wax-seal {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 52px; height: 52px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #d0614e, #8b2a1f);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Great Vibes', cursive;
-    color: rgba(255,255,255,0.9);
-    font-size: 1.4rem;
-    z-index: 3;
-    transition: transform 0.3s ease, opacity 0.9s ease;
-    border: 2px solid rgba(255,200,150,0.3);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    animation: roseFloat 3s ease-in-out infinite;
   }
+  @keyframes roseFloat { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
 
-  /* Card inside envelope */
   .env-card {
-    position: absolute; left: 30px; right: 30px; bottom: 18px;
-    height: 160px;
-    background: var(--white);
-    border-radius: 3px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 4px;
-    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-    z-index: 1;
-    overflow: hidden;
+    position: static;
+    width: auto;
+    height: auto;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    gap: 0;
+    transition: none;
+    z-index: auto;
+    overflow: visible;
+    padding: 0;
   }
-  .env-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
-  }
+  .env-card::before { display: none; }
+  
   .env-card-title {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.5rem; color: var(--rose);
+    font-size: 1.2rem; color: #d97c8c;
     line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
   }
-  .env-card-names { font-family: 'Great Vibes', cursive; font-size: 1.9rem; color: var(--dark); line-height: 1.1; }
-  .env-card-date { font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; font-style: bold; }
+  .env-card-names { 
+    font-family: 'Great Vibes', cursive; 
+    font-size: 2.8rem; color: #8b4f5d; 
+    line-height: 1.1; 
+    margin-bottom: 8px;
+  }
+  .env-card-date { 
+    font-family: 'Jost', sans-serif; 
+    font-size: 0.75rem; 
+    letter-spacing: 0.2em; 
+    color: #b8879a; 
+    text-transform: uppercase; 
+    margin-bottom: 30px;
+  }
 
-  /* Open state */
-  .env-wrap.open .env-flap { transform: rotateX(180deg); }
-  .env-wrap.open .env-card { transform: translateY(-130px); }
-  .env-wrap.open .wax-seal { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-
-  /* Tap hint */
+  /* Open Button */
   .tap-hint {
-    color: rgba(255,255,255,0.6);
-    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-    margin-top: 40px; text-align: center;
-    animation: pulse 2s ease-in-out infinite;
+    display: inline-block;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #d97c8c, #e89ba7);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(217, 124, 140, 0.35);
+    margin-top: 30px;
+    animation: none;
   }
-  @keyframes pulse { 0%,100%{ opacity: 0.5; } 50%{ opacity: 1; } }
+  .tap-hint:hover {
+    background: linear-gradient(135deg, #c8556b, #d97c8c);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(217, 124, 140, 0.45);
+  }
+  .tap-hint:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(217, 124, 140, 0.35);
+  }
 
-  .env-title-above {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem; color: var(--gold2);
-    text-align: center; margin-bottom: 28px;
-    opacity: 0.85;
+  .env-title-above { display: none; }
+
+  /* Open state - simple fade */
+  .env-wrap.open .env-body { 
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+    pointer-events: none;
+  }
+
+  .env-wrap.open .petal {
+    animation: none;
+    opacity: 0;
   }
 
   /* ─── MAIN SITE ─── */
@@ -444,13 +443,8 @@
     .gallery-grid { grid-template-columns: 1fr 1fr; }
     .rsvp-form { padding: 36px 24px; }
     .form-row { grid-template-columns: 1fr; }
-    .envelope { width: 290px; height: 188px; }
-    .env-flap { border-left-width: 145px; border-right-width: 145px; border-top-width: 110px; }
-    .env-bottom { border-left-width: 145px; border-right-width: 145px; border-bottom-width: 100px; }
-    .env-left { border-top-width: 94px; border-bottom-width: 94px; border-left-width: 120px; }
-    .env-right { border-top-width: 94px; border-bottom-width: 94px; border-right-width: 120px; }
-    .env-card { left: 22px; right: 22px; }
-    .env-flap::after { top: -110px; left: -145px; right: -145px; height: 110px; }
+    .env-body { width: 320px; padding: 50px 35px; }
+    .tap-hint { padding: 12px 32px; font-size: 0.75rem; }
   }
 </style>
 <!-- Preload center gallery image to improve LCP and ensure it's fetched early -->
@@ -465,7 +459,7 @@
   <div style="display:flex;flex-direction:column;align-items:center;">
     <div class="env-title-above shimmer-text">You're Invited</div>
 
-    <div class="env-wrap" id="envWrap" onclick="openEnvelope()">
+    <div class="env-wrap" id="envWrap">
       <!-- floating petals -->
       <span class="petal">🌸</span>
       <span class="petal">🌺</span>
@@ -495,7 +489,7 @@
       </div>
     </div>
 
-    <div class="tap-hint">Click the envelope to open</div>
+    <button class="tap-hint" onclick="openEnvelope()">Open Invitation</button>
   </div>
 </div>
 
